@@ -13,7 +13,7 @@ function tracef(str:String, ... args):void
 				switch(arr[i].toLowerCase()) {
 					case "%i":
 						for(t; t < args.length; t++) {
-							if(args[t] is int && usedArgs.indexOf(args[t]) == -1) {
+							if((args[t] is int || args[t] is uint) && (usedArgs.indexOf(args[t]) == -1)) {
 								arr[i] = args[t]; usedArgs.push(args[t]);
 								break;
 							}
@@ -49,5 +49,16 @@ function tracef(str:String, ... args):void
 	return;
 }
 // Demo
+tracef("Without %s", "tracef");
+trace("%s is a new way to format traces, allows numbers like: %n and ints like: %i");
+trace("You may also interpolate objects: %o");
+tracef("With %s", "tracef");
 tracef("%s is a new way to format traces, allows numbers like: %n and ints like: %i", Number(2.9), int(2), "tracef"); 
 tracef("You may also interpolate objects: %o", new Object());
+
+for(var i:int = 0; i < 100; i++) { // Look out! nothing can be right before, or right after %*!
+	var iSquared:uint = i * i;
+	var iCubed:uint = i * i * i;
+	var HalfISquareCubed:uint = (iSquared * iCubed)/(i/2);
+	tracef("i = %i \ti^2 = %i \ti^3 = %i \t(i^2*i^3)/(i/2) = %i", i, iSquared, iCubed, HalfISquareCubed);
+}
