@@ -13,4 +13,4 @@ printf() in as3, as an option to trace()
 
 
 
--> ***If you find any other buggs, or wish to contribute, then you're more than welcome to do so. Especially if you fix one of the warnings!
+-> ***If you find any other buggs, or wish to contribute, then you're more than welcome to do so. Especially if you fix one of the warnings!***
