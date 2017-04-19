@@ -7,69 +7,57 @@ function tracef(str:String, ... args):void {
 
     var newStr:String = "";
     var usedArgs:Array = new Array;
-    
-    if(str.indexOf("%") == -1) newStr = str;
-        
+
+    if(str.indexOf(/%[ions]{1}/) == -1) newStr = str; // Matches only if there actually is a format specifier
+
     else {
-    
-        var indices:int = args.length;
-        var index:int = 0;
-        var arr:Array = str.split(" ");
 
-        for(var i:int = 0; i < arr.length; i++) {
+        var arr:Array = str.split(/(%[ions]{1})/); // Grouping parentheses make it so all matches are included in arr; not only the first one
 
-            var t:int = 0;
+        for(var i:int = 1; i < arr.length; i++) { // Because the first element of the array won't have a format specifier, we can instead start at index 1
 
-            if(index < indices) {
+            if(args.length > 1) { // As we are confirming whether or not there is a format specifier we want to know if the highest index is at least 1
 
-                switch(arr[i].toLowerCase()) {
+                switch(arr[i].substr(0, 2)) { // All elements except the first one start with the format specifier and are 2 characters long
 
                     case "%i":
-                        for(t; t < args.length; t++) {
-                            if((args[t] is int || args[t] is uint) && (usedArgs.indexOf(args[t]) == -1)) {
-                                arr[i] = args[t]; usedArgs.push(args[t]);
-                                break;
-                            }
-                        } break;
+                        if((args[i - 1] is int || args[i - 1] is uint) { // Because we set i to start at one we need find the argument at index i - 1 in args because args has its first argument at index 1. This works because there is one more element in arr than in args
+                            arr[i] = arr[i].replace("%i", args[i - 1]);
+                        }
+                        break;
 
                     case "%s":
-                        for(t; t < args.length; t++) {
-                            if(args[t] is String && usedArgs.indexOf(args[t]) == -1) {
-                                arr[i] = args[t]; usedArgs.push(args[t]);
-                                break;
-                            }
-                        } break;
+                        if(args[t] is String && usedArgs.indexOf(args[t]) == -1) {
+                            arr[i] = arr[i].replace("%s", args[i - 1]);
+                        }
+                        break;
 
                     case "%n":
-                        for(t; t < args.length; t++) {
-                            if(args[t] is Number && usedArgs.indexOf(args[t]) == -1) {
-                                arr[i] = args[t]; usedArgs.push(args[t]);
-                                break;
-                            }
+                        if(args[t] is Number && usedArgs.indexOf(args[t]) == -1) {
+                            arr[i] = arr[i].replace("%n", args[i - 1]);
                         } break;
 
                     case "%o":
-                        for(t; t < args.length; t++) {
-                            if(args[t] is Object && usedArgs.indexOf(args[t]) == -1) {
-                                arr[i] = args[t]; usedArgs.push(args[t]);
-                                break;
-                            }
+                        if(args[t] is Object && usedArgs.indexOf(args[t]) == -1) {
+                            arr[i] = arr[i].replace("%o", args[i - 1]);
                         } break;
 
                     default: break;
+
                 }
 
             }
 
         }
 
-        for(var p:int = 0; p < arr.length; p++) newStr += arr[p]+" ";
+        for(var p:int = 0; p < arr.length; p++) newStr += arr[p];
 
     }
 
     trace(newStr);
 
     return;
+
 }
 
 
