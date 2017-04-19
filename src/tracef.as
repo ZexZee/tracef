@@ -3,8 +3,6 @@
 
 
 
-
-
 function tracef(str:String, ... args):void {
 
 	var newStr:String = "";
@@ -17,8 +15,6 @@ function tracef(str:String, ... args):void {
 		var indices:int = args.length;
         var index:int = 0;
         var arr:Array = str.split(" ");
-        
-        
         
 		for(var i:int = 0; i < arr.length; i++) {
         
@@ -68,6 +64,7 @@ function tracef(str:String, ... args):void {
 		}
         
 		for(var p:int = 0; p < arr.length; p++) newStr += arr[p]+" ";
+		
 	}
     
 	trace(newStr); 
