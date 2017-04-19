@@ -19,7 +19,7 @@ tracef("You may also interpolate objects: %o", new Object());
 ```
 # Warnings
 ***Having anything right before, or right after '%' breaks it***
-  + **example** `tracef("Hello%s", name);` will not work, neither will `tracef("Hello %sis a nice name", name);`
+  + **example** `tracef("Hello%s", name);` will not work, neither will `tracef("%sis a nice name", name);`
 
 
 
