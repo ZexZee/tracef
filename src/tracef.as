@@ -56,7 +56,7 @@ tracef("With %s", "tracef");
 tracef("%s is a new way to format traces, allows numbers like: %n and ints like: %i", Number(2.9), int(2), "tracef"); 
 tracef("You may also interpolate objects: %o", new Object());
 
-for(var i:int = 0; i < 100; i++) { // Look out! nothing can be right before, or right after %*!
+for(var i:int = 0; i < 100; i++) { // Look out! nothing can be right before, or right after %*! Also, repeated numbers arent recognized
 	var iSquared:uint = i * i;
 	var iCubed:uint = i * i * i;
 	var HalfISquareCubed:uint = (iSquared * iCubed)/(i/2);
