@@ -8,68 +8,68 @@ function tracef(str:String, ... args):void {
     var newStr:String = "";
     var usedArgs:Array = new Array;
     
-	if(str.indexOf("%") == -1) newStr = str;
+    if(str.indexOf("%") == -1) newStr = str;
         
-	else {
+    else {
     
-		var indices:int = args.length;
+        var indices:int = args.length;
         var index:int = 0;
         var arr:Array = str.split(" ");
-        
-		for(var i:int = 0; i < arr.length; i++) {
-        
-			var t:int = 0;
-            
-			if(index < indices) {
-            
-				switch(arr[i].toLowerCase()) {
-                
-					case "%i":
-						for(t; t < args.length; t++) {
-							if((args[t] is int || args[t] is uint) && (usedArgs.indexOf(args[t]) == -1)) {
-								arr[i] = args[t]; usedArgs.push(args[t]);
-								break;
-							}
-						} break;
-                        
-					case "%s":
-						for(t; t < args.length; t++) {
-							if(args[t] is String && usedArgs.indexOf(args[t]) == -1) {
-								arr[i] = args[t]; usedArgs.push(args[t]);
-								break;
-							}
-						} break;
-                        
-					case "%n":
-						for(t; t < args.length; t++) {
-							if(args[t] is Number && usedArgs.indexOf(args[t]) == -1) {
-								arr[i] = args[t]; usedArgs.push(args[t]);
-								break;
-							}
-						} break;
-                        
-					case "%o":
-						for(t; t < args.length; t++) {
-							if(args[t] is Object && usedArgs.indexOf(args[t]) == -1) {
-								arr[i] = args[t]; usedArgs.push(args[t]);
-								break;
-							}
-						} break;
-                        
-					default: break;
-				}
-                
-			}
-            
-		}
-        
-		for(var p:int = 0; p < arr.length; p++) newStr += arr[p]+" ";
-		
-	}
-    
-	trace(newStr);
-    
-	return;
+
+        for(var i:int = 0; i < arr.length; i++) {
+
+            var t:int = 0;
+
+            if(index < indices) {
+
+                switch(arr[i].toLowerCase()) {
+
+                    case "%i":
+                        for(t; t < args.length; t++) {
+                            if((args[t] is int || args[t] is uint) && (usedArgs.indexOf(args[t]) == -1)) {
+                                arr[i] = args[t]; usedArgs.push(args[t]);
+                                break;
+                            }
+                        } break;
+
+                    case "%s":
+                        for(t; t < args.length; t++) {
+                            if(args[t] is String && usedArgs.indexOf(args[t]) == -1) {
+                                arr[i] = args[t]; usedArgs.push(args[t]);
+                                break;
+                            }
+                        } break;
+
+                    case "%n":
+                        for(t; t < args.length; t++) {
+                            if(args[t] is Number && usedArgs.indexOf(args[t]) == -1) {
+                                arr[i] = args[t]; usedArgs.push(args[t]);
+                                break;
+                            }
+                        } break;
+
+                    case "%o":
+                        for(t; t < args.length; t++) {
+                            if(args[t] is Object && usedArgs.indexOf(args[t]) == -1) {
+                                arr[i] = args[t]; usedArgs.push(args[t]);
+                                break;
+                            }
+                        } break;
+
+                    default: break;
+                }
+
+            }
+
+        }
+
+        for(var p:int = 0; p < arr.length; p++) newStr += arr[p]+" ";
+
+    }
+
+    trace(newStr);
+
+    return;
 }
 
 
@@ -84,10 +84,10 @@ tracef("You may also interpolate objects: %o", new Object());
 
 for(var i:int = 0; i < 100; i++) { // Look out! nothing can be right before, or right after %*! Also, repeated numbers arent recognized
 
-	var iSquared:uint = i * i;
-	var iCubed:uint = i * i * i;
-	var HalfISquareCubed:uint = (iSquared * iCubed)/(i/2);
-    
-	tracef("i = %i \ti^2 = %i \ti^3 = %i \t(i^2*i^3)/(i/2) = %i", i, iSquared, iCubed, HalfISquareCubed);
-    
+    var iSquared:uint = i * i;
+    var iCubed:uint = i * i * i;
+    var HalfISquareCubed:uint = (iSquared * iCubed)/(i/2);
+
+    tracef("i = %i \ti^2 = %i \ti^3 = %i \t(i^2*i^3)/(i/2) = %i", i, iSquared, iCubed, HalfISquareCubed);
+
 }
