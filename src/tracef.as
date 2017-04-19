@@ -5,7 +5,7 @@
 
 function tracef(str:String, ... args):void {
 
-	var newStr:String = "";
+    var newStr:String = "";
     var usedArgs:Array = new Array;
     
 	if(str.indexOf("%") == -1) newStr = str;
