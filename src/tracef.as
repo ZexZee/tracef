@@ -67,7 +67,7 @@ function tracef(str:String, ... args):void {
 		
 	}
     
-	trace(newStr); 
+	trace(newStr);
     
 	return;
 }
