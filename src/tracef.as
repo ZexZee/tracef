@@ -79,3 +79,7 @@ for(var i:int = 0; i < 100; i++) { // Look out! nothing can be right before, or 
     tracef("i = %i \ti^2 = %i \ti^3 = %i \t(i^2*i^3)/(i/2) = %i", i, iSquared, iCubed, HalfISquareCubed);
 
 }
+
+// Tests
+tracef("Does this%s?", " work");
+tracef("Same argument multiple times: %i %i %i", 1, 1, 1);
