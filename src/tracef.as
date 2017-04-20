@@ -33,7 +33,7 @@ function tracef(str:String, ... args):void {
 
 					case "%s":
 						for (t; t < args.length; t++) {
-							if (args[t] is String) == -1) {
+							if (args[t] is String) {
 								arr[i].replace("%s", args[t]);
 								args.pop(args[t]);
 
