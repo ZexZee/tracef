@@ -7,7 +7,7 @@ function tracef(str:String, ... args):void {
 
 	var newStr:String = "";
 
-	if (str.indexOf(/%[ions]{1}/) == -1) newStr = str; // Matches only if there actually is a format specifier
+	if (str.indexOf(/%[ions]/) == -1) newStr = str; // Matches only if there actually is a format specifier
 
 	else {
 
