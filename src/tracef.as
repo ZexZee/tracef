@@ -25,7 +25,7 @@ function tracef(str:String, ... args):void {
 						for (t; t < args.length; t++) {
 							if (args[t] is int || args[t] is uint) {
 								arr[i].replace("%i", args[t]);
-								args.pop(args[t]); // As each argument is only supposed to be used once we can remove them from args after they have been used
+								args.removeAt(t); // As each argument is only supposed to be used once we can remove them from args after they have been used
 
 								break;
 							}
@@ -35,7 +35,7 @@ function tracef(str:String, ... args):void {
 						for (t; t < args.length; t++) {
 							if (args[t] is String) {
 								arr[i].replace("%s", args[t]);
-								args.pop(args[t]);
+								args.removeAt(t);
 
 								break;
 							}
@@ -45,7 +45,7 @@ function tracef(str:String, ... args):void {
 						for (t; t < args.length; t++) {
 							if (args[t] is Number) {
 								arr[i].replace("%n", args[t]);
-								args.pop(args[t]);
+								args.removeAt(t);
 
 								break;
 							}
@@ -55,7 +55,7 @@ function tracef(str:String, ... args):void {
 						for (t; t < args.length; t++) {
 							if (args[t] is Object) {
 								arr[i].replace("%o", args[t]);
-								args.pop(args[t]);
+								args.removeAt(t);
 
 								break;
 							}
