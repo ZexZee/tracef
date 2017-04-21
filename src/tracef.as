@@ -7,9 +7,7 @@ function tracef(str:String, ... args):void {
 
 	var newStr:String = "";
 
-	if (str.indexOf(/%[ions]/) == -1) newStr = str; // Matches only if there actually is a format specifier
-
-	else {
+	if (str.search(/%[ions]/) != -1 && args.length > 0) {  // Matches only if there actually is a format specifier and an argument to replace it with
 
 		var arr:Array = str.split(/(%[ions])/); // Grouping parentheses make it so all matches are included in arr; not only the first one
 
@@ -17,15 +15,15 @@ function tracef(str:String, ... args):void {
 
 			var t:int = 0;
 
-			if(args.length > 1) { // As we are confirming whether or not there is a format specifier we want to know if the highest index is at least 1
+			if(args.length > 0) { // As we are confirming whether or not there is a format specifier we want to know if the highest index is at least 1
 
-				switch(arr[i].substr(0, 2)) { // All elements except the first one start with the format specifier, which is 2 characters long
+				switch(arr[i]) { // All matched format identifiers go in their own index - without any other part of the original string
 
 					case "%i":
 						for (t; t < args.length; t++) {
 							if (args[t] is int || args[t] is uint) {
-								arr[i].replace("%i", args[t]);
-								args.pop(args[t]); // As each argument is only supposed to be used once we can remove them from args after they have been used
+								arr[i] = args[t];
+								args.splice(t, 1); // As each argument is only supposed to be used once we can remove them from args after they have been used
 
 								break;
 							}
@@ -34,8 +32,8 @@ function tracef(str:String, ... args):void {
 					case "%s":
 						for (t; t < args.length; t++) {
 							if (args[t] is String) {
-								arr[i].replace("%s", args[t]);
-								args.pop(args[t]);
+								arr[i] = args[t];
+								args.splice(t, 1);
 
 								break;
 							}
@@ -43,9 +41,9 @@ function tracef(str:String, ... args):void {
 
 					case "%n":
 						for (t; t < args.length; t++) {
-							if (args[t] is Number) {
-								arr[i].replace("%n", args[t]);
-								args.pop(args[t]);
+							if (args[t] is Number && !(args[t] is int || args[t] is uint)) {
+								arr[i] = args[t];
+								args.splice(t, 1);
 
 								break;
 							}
@@ -53,9 +51,9 @@ function tracef(str:String, ... args):void {
 
 					case "%o":
 						for (t; t < args.length; t++) {
-							if (args[t] is Object) {
-								arr[i].replace("%o", args[t]);
-								args.pop(args[t]);
+							if (args[t] is Object && !(args[t] is int || args[t] is uint || args[t] is String)) {
+								arr[i] = args[t];
+								args.splice(t, 1);
 
 								break;
 							}
@@ -69,9 +67,11 @@ function tracef(str:String, ... args):void {
 
 		}
 
-		for (var p:String in arr) newStr += p;
+		for each (var p:String in arr) newStr += p;
 
 	}
+
+	else newStr = str;
 
 	trace(newStr);
 	return;
