@@ -1,4 +1,4 @@
-# Tracef
+# Tracef Version 1.0.12
 printf() in as3, as an alternative to trace()
 # Usage
 tracef() works alot like printf(), in that specific identifiers add different variables to an output string, before writing it.
