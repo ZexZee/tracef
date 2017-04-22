@@ -1,4 +1,4 @@
-# Tracef Version 1.0.12
+# Tracef Version 1.0.20
 printf() in as3, as an alternative to trace()
 # Usage
 tracef() works alot like printf(), in that specific identifiers add different variables to an output string, before writing it.
@@ -17,8 +17,4 @@ tracef("With %s", "tracef");
 tracef("%s is a new way to format traces, allows numbers like: %n and ints like: %i", Number(2.9), int(2), "tracef"); 
 tracef("You may also interpolate objects: %o", new Object());
 ```
-# Warnings
-***Having anything right before, or right after '%' breaks it***
-  + **example** `tracef("Hello%s", name);` will not work, neither will `tracef("%sis a nice name", name);`
-
-# ***If you find any other bugs, or wish to contribute, then you're more than welcome to do so. Especially if you fix one of the warnings!***
+# ***If you find any bugs, or wish to contribute, then you're more than welcome to do so.***
