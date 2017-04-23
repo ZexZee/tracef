@@ -1,5 +1,23 @@
-// C-like printf -> The AS3 tracef!
-// Author: Mattias Langseth Contributor: Joakim
+/*
+ *  tracef() -> trace() with formating, similar to C/C++'s printf()
+ *  Copyright (C) 2017  Mattias Langseth <ZxZ>
+ *  Thanks go towards JaxonWasTaken for contributions (mainly RegExp, which made everything cleaner).
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+ 
 function tracef(str:String, ... args):void {
 	var newStr:String = "";
 	if (str.search(/%[ions]/) != -1 && args.length > 0) {  // Matches only if there actually is a format specifier and an argument to replace it with
